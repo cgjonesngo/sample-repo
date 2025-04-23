@@ -27,11 +27,13 @@ max(testing(splits_resp)$date)
 
 # resampling strategies ----
 ## Strategy 0
-set.seed(0112358)
+
+set.seed(0112358999)
+
 resamples_kfold_resp_og <- training(splits_resp) |> 
     time_series_cv(
     assess = "12 months",     # Length of each assessment period
-    initial = "5 years",     # Initial training period
+    initial = "10 years",     # Initial training period
     slice_limit = 10,        # Number of slices to create
     cumulative = TRUE       # Use expanding window
   )
@@ -86,6 +88,14 @@ resamples_kfold_resp_s5 <- training(splits_resp) |>
     initial = "2 years",     # same initial training period as original
     slice_limit = 5,         # 5 vs 10 slices
     skip = "12 months",       # 1 year skip vs 1 day skip
+    cumulative = TRUE       # Use expanding window similar to original
+  )
+
+# Strategy 6: New strategy with 10 year training period and 12 month validation period
+resamples_kfold_resp_s6 <- training(splits_resp) |>
+  time_series_cv(
+    assess = "12 months",     # same validation period length as original
+    initial = "10 years",     # same initial training period as original
     cumulative = TRUE       # Use expanding window similar to original
   )
 
