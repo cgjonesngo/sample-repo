@@ -15,6 +15,7 @@ max(df_train_test$date)
 set.seed(0112358)
 splits_resp <- df_train_test |>
   time_series_split(
+    # assess = "12 months", # keeping this for later
     assess = "18 months",
     cumulative = TRUE,
     date_var = date
