@@ -9,7 +9,7 @@ library(ggplot2)
 
 
 # (1) data calls
-filepath <- "/Users/caitlin/Documents/UCSD Postdoc/Projects/AQA/Data"
+filepath <- "Path/to/your/file" #replace with your filepath
 years <- 1999:2021
 
 file_syntax <- paste0("AQI data (", paste(years, collapse = "|"), ")CA")
@@ -24,7 +24,7 @@ monitors <- unique(aqi[, c("Site ID", "Site Latitude", "Site Longitude")])
 
 
 # (3) point within polygon
-aqmd_sf <- st_read("/Users/caitlin/Documents/UCSD Postdoc/Projects/AQA/Data/AQMD/CaAirDistrict.shp")
+aqmd_sf <- st_read("/Users/caitlin/Documents/UCSD Postdoc/Projects/AQA/Data/AQMD/CaAirDistrict.shp") #replace with filepath to your data
 monitors_sf <- st_as_sf(monitors, coords = c("Site Longitude", "Site Latitude"), crs = 4326) 
 monitors_sf <- st_transform(monitors_sf, crs = 3310) # CRS is TealeAlbersNAD83
 
